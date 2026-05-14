@@ -9,19 +9,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #08101f;
-            --bg-soft: #111b30;
-            --panel: rgba(10, 18, 34, 0.72);
-            --panel-strong: rgba(14, 24, 45, 0.92);
-            --line: rgba(255, 255, 255, 0.10);
-            --line-strong: rgba(255, 255, 255, 0.18);
-            --text: #eef4ff;
-            --muted: rgba(238, 244, 255, 0.70);
-            --muted-2: rgba(238, 244, 255, 0.56);
-            --accent: #7cf7d4;
-            --accent-2: #7ab8ff;
-            --accent-3: #ffb86b;
-            --shadow: 0 24px 80px rgba(0, 0, 0, 0.40);
+            --bg: #edf3fb;
+            --bg-soft: #dce8f8;
+            --panel: rgba(255, 255, 255, 0.82);
+            --panel-strong: rgba(255, 255, 255, 0.96);
+            --line: rgba(14, 74, 161, 0.12);
+            --line-strong: rgba(14, 74, 161, 0.20);
+            --text: #0f1e36;
+            --muted: rgba(15, 30, 54, 0.72);
+            --muted-2: rgba(15, 30, 54, 0.56);
+            --accent: #0b4ea2;
+            --accent-2: #1f73d1;
+            --accent-3: #f0b429;
+            --shadow: 0 22px 60px rgba(15, 30, 54, 0.14);
         }
 
         * {
@@ -39,10 +39,9 @@
             font-family: 'Manrope', sans-serif;
             color: var(--text);
             background:
-                radial-gradient(circle at top left, rgba(124, 247, 212, 0.16), transparent 32%),
-                radial-gradient(circle at top right, rgba(122, 184, 255, 0.18), transparent 26%),
-                radial-gradient(circle at bottom center, rgba(255, 184, 107, 0.12), transparent 30%),
-                linear-gradient(135deg, #050913 0%, #09111f 48%, #0f1830 100%);
+                radial-gradient(circle at top left, rgba(11, 78, 162, 0.12), transparent 28%),
+                radial-gradient(circle at top right, rgba(31, 115, 209, 0.10), transparent 24%),
+                linear-gradient(180deg, #f8fbff 0%, #edf3fb 56%, #e6eef9 100%);
             overflow-x: hidden;
             position: relative;
         }
@@ -64,7 +63,7 @@
             height: 260px;
             left: -70px;
             top: 120px;
-            background: rgba(122, 184, 255, 0.20);
+            background: rgba(11, 78, 162, 0.10);
         }
 
         body::after {
@@ -72,7 +71,7 @@
             height: 300px;
             right: -90px;
             bottom: 40px;
-            background: rgba(124, 247, 212, 0.14);
+            background: rgba(31, 115, 209, 0.08);
         }
 
         .shell {
@@ -86,7 +85,7 @@
 
         .routine-widget {
             width: min(1080px, 100%);
-            background: linear-gradient(180deg, rgba(17, 27, 48, 0.88), rgba(9, 15, 28, 0.84));
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 251, 255, 0.96));
             border: 1px solid var(--line);
             border-radius: 30px;
             box-shadow: var(--shadow);
@@ -99,9 +98,9 @@
             padding: 28px 28px 20px;
             border-bottom: 1px solid var(--line);
             background:
-                linear-gradient(135deg, rgba(124, 247, 212, 0.10), transparent 42%),
-                linear-gradient(225deg, rgba(122, 184, 255, 0.12), transparent 40%),
-                rgba(255, 255, 255, 0.02);
+                linear-gradient(135deg, rgba(11, 78, 162, 0.08), transparent 42%),
+                linear-gradient(225deg, rgba(31, 115, 209, 0.08), transparent 40%),
+                rgba(255, 255, 255, 0.65);
         }
 
         .hero-top {
@@ -120,7 +119,7 @@
             padding: 9px 14px;
             border: 1px solid var(--line);
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(11, 78, 162, 0.06);
             color: var(--muted);
             font-size: 0.78rem;
             letter-spacing: 0.12em;
@@ -133,7 +132,7 @@
             height: 8px;
             border-radius: 999px;
             background: var(--accent);
-            box-shadow: 0 0 0 6px rgba(124, 247, 212, 0.12);
+            box-shadow: 0 0 0 6px rgba(11, 78, 162, 0.12);
         }
 
         .hero h1 {
@@ -163,7 +162,7 @@
             padding: 14px 14px 13px;
             border-radius: 18px;
             border: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.82);
             display: grid;
             gap: 6px;
         }
@@ -183,6 +182,7 @@
 
         .content {
             padding: 28px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.10));
         }
 
         .section-head {
@@ -217,9 +217,9 @@
             border-radius: 22px;
             border: 1px solid var(--line);
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 250, 255, 0.92)),
                 var(--panel);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.20);
+            box-shadow: 0 12px 28px rgba(15, 30, 54, 0.08);
             transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
             overflow: hidden;
         }
@@ -228,7 +228,7 @@
             transform: translateY(-4px);
             border-color: var(--line-strong);
             background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04)),
+                linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(243, 248, 255, 0.96)),
                 var(--panel-strong);
         }
 
@@ -254,11 +254,11 @@
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: #06111d;
-            background: linear-gradient(135deg, #9af3d8 0%, #8dc2ff 100%);
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
             padding: 8px 12px;
             border-radius: 999px;
-            box-shadow: 0 10px 20px rgba(124, 247, 212, 0.16);
+            box-shadow: 0 10px 20px rgba(11, 78, 162, 0.16);
         }
 
         .course {
@@ -288,8 +288,8 @@
             width: 28px;
             height: 28px;
             border-radius: 9px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(11, 78, 162, 0.06);
+            border: 1px solid rgba(11, 78, 162, 0.08);
             font-size: 0.92rem;
         }
 
@@ -349,7 +349,7 @@
                     <div>
                         <div class="eyebrow">Uttara University Schedule</div>
                         <h1>Batch 66E Friday Routine</h1>
-                        <p>Batch 66E - Friday Routine (Summer 2026)</p>
+                        <p>Summer 2026</p>
                     </div>
 
                     <div class="hero-aside" aria-label="Quick schedule summary">
@@ -372,13 +372,12 @@
             <main class="content">
                 <div class="section-head">
                     <h2>Today’s timetable</h2>
-                    <p>Use the block colors and time chips to scan the day quickly.</p>
                 </div>
 
                 <div class="grid-container">
                     <article class="class-card">
                         <div class="top-row">
-                            <span class="course">EEE0714202</span>
+                            <span class="course">ELECTRONICS LAB</span>
                             <span class="time">09:00 - 10:00 AM</span>
                         </div>
                         <div class="details">
@@ -389,7 +388,7 @@
 
                     <article class="class-card">
                         <div class="top-row">
-                            <span class="course">EEE0713201</span>
+                            <span class="course">ELECTRONICS</span>
                             <span class="time">10:00 - 11:00 AM</span>
                         </div>
                         <div class="details">
@@ -400,7 +399,7 @@
 
                     <article class="class-card">
                         <div class="top-row">
-                            <span class="course">CSE0613203</span>
+                            <span class="course">DIGITAL LOGIC DESIGN</span>
                             <span class="time">11:00 - 01:00 PM</span>
                         </div>
                         <div class="details">
@@ -411,7 +410,7 @@
 
                     <article class="class-card">
                         <div class="top-row">
-                            <span class="course">CSE0613204</span>
+                            <span class="course">DIGITAL LOGIC DESIGN LAB</span>
                             <span class="time">04:00 - 05:00 PM</span>
                         </div>
                         <div class="details">
@@ -422,7 +421,7 @@
 
                     <article class="class-card">
                         <div class="top-row">
-                            <span class="course">MAT0541101</span>
+                            <span class="course">DIFFERENTIAL & INTEGRAL CALCULUS</span>
                             <span class="time">06:00 - 07:00 PM</span>
                         </div>
                         <div class="details">
@@ -433,7 +432,7 @@
 
                     <article class="class-card">
                         <div class="top-row">
-                            <span class="course">GED0413201</span>
+                            <span class="course">ENTREPRENEURSHIP: INNOVATION AND COMMERCIALIZATION</span>
                             <span class="time">07:00 - 08:00 PM</span>
                         </div>
                         <div class="details">
@@ -443,9 +442,7 @@
                     </article>
                 </div>
 
-                <div class="footer-note">
-                    Built for quick scanning on desktop and mobile. If you want, I can also turn this into a weekly timetable or add icons, colors, and subject tags per course.
-                </div>
+                <div class="footer-note">Desktop and mobile friendly.</div>
             </main>
         </div>
     </div>
