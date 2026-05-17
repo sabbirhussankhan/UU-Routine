@@ -10,16 +10,11 @@
 <style>
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
   :root {
-    --bg:#edf3fb; --surface:rgba(255,255,255,0.88); --surface-2:rgba(255,255,255,0.98);
-    --border:rgba(11,78,162,0.11); --border-2:rgba(11,78,162,0.22);
-    --text:#0f1e36; --muted:rgba(15,30,54,0.58); --muted-2:rgba(15,30,54,0.38);
-    --accent:#0b4ea2; --accent-2:#1f73d1;
-    --c-amber:#9a5c00; --c-amber-bg:rgba(154,92,0,0.07); --c-amber-border:rgba(154,92,0,0.20);
-    --c-blue:#0b4ea2; --c-blue-bg:rgba(11,78,162,0.07); --c-blue-border:rgba(11,78,162,0.20);
-    --c-teal:#0a6e5c; --c-teal-bg:rgba(10,110,92,0.07); --c-teal-border:rgba(10,110,92,0.20);
-    --c-coral:#b03020; --c-coral-bg:rgba(176,48,32,0.07); --c-coral-border:rgba(176,48,32,0.20);
-    --c-purple:#5a3ea0; --c-purple-bg:rgba(90,62,160,0.07); --c-purple-border:rgba(90,62,160,0.20);
-    --nav-h:62px; --bot-h:64px;
+    --bg: #edf3fb; --surface: rgba(255,255,255,0.88); --surface-2: rgba(255,255,255,0.98);
+    --border: rgba(11,78,162,0.11); --border-2: rgba(11,78,162,0.22);
+    --text: #0f1e36; --muted: rgba(15,30,54,0.58); --muted-2: rgba(15,30,54,0.38);
+    --accent: #0b4ea2; --accent-2: #1f73d1;
+    --nav-h: 64px; --bnav-h: 64px;
   }
   html { scroll-behavior:smooth; }
   body {
@@ -30,116 +25,118 @@
     color:var(--text); min-height:100dvh; -webkit-font-smoothing:antialiased;
   }
 
-  /* ── Top Nav ── */
-  .topnav {
+  /* ══ TOP NAVBAR ══ */
+  .navbar {
     position:fixed; top:0; left:0; right:0; z-index:100;
     height:var(--nav-h);
     background:rgba(255,255,255,0.82);
     border-bottom:1px solid var(--border);
-    backdrop-filter:blur(18px);
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
     display:flex; align-items:center;
     padding:0 28px; gap:0;
   }
   .nav-brand {
-    font-family:'Bricolage Grotesque',sans-serif;
-    font-size:1rem; font-weight:800; letter-spacing:-0.03em;
-    color:var(--text); text-decoration:none; margin-right:auto;
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none; margin-right:auto;
   }
-  .nav-brand span { color:var(--accent-2); }
+  .nav-logo {
+    width:34px; height:34px; border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:0.72rem; font-weight:800; color:#fff; letter-spacing:-0.01em;
+  }
+  .nav-title {
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:0.95rem; font-weight:700; letter-spacing:-0.02em; color:var(--text);
+  }
   .nav-links { display:flex; align-items:center; gap:4px; }
   .nav-link {
     display:flex; align-items:center; gap:7px;
     padding:8px 14px; border-radius:10px;
-    font-size:0.84rem; font-weight:600;
-    color:var(--muted); text-decoration:none;
-    transition:background 0.15s, color 0.15s;
-    white-space:nowrap;
+    font-size:0.84rem; font-weight:600; color:var(--muted);
+    text-decoration:none; transition:all 0.18s ease;
   }
-  .nav-link:hover { background:rgba(11,78,162,0.06); color:var(--text); }
+  .nav-link:hover { background:rgba(11,78,162,0.06); color:var(--accent); }
   .nav-link.active {
-    background:rgba(11,78,162,0.09);
-    color:var(--accent);
+    background:rgba(11,78,162,0.09); color:var(--accent);
   }
-  .nav-link svg { flex-shrink:0; opacity:0.7; }
+  .nav-link svg { opacity:0.7; }
   .nav-link.active svg { opacity:1; }
 
-  /* ── Bottom Nav (mobile) ── */
-  .botnav {
+  /* ══ BOTTOM NAV (mobile) ══ */
+  .bottom-nav {
     display:none;
     position:fixed; bottom:0; left:0; right:0; z-index:100;
-    height:var(--bot-h);
-    background:rgba(255,255,255,0.94);
+    height:var(--bnav-h);
+    background:rgba(255,255,255,0.92);
     border-top:1px solid var(--border);
     backdrop-filter:blur(18px);
     padding:0 8px;
-    align-items:center; justify-content:space-around;
+    justify-content:space-around; align-items:center;
   }
-  .bot-link {
+  .bnav-item {
     display:flex; flex-direction:column; align-items:center; gap:3px;
-    padding:6px 14px; border-radius:12px;
-    text-decoration:none; color:var(--muted);
+    padding:6px 16px; border-radius:12px;
+    text-decoration:none; color:var(--muted-2);
     font-size:10px; font-weight:600; letter-spacing:0.04em;
-    transition:all 0.15s;
-    flex:1;
+    transition:all 0.18s ease; flex:1;
   }
-  .bot-link svg { width:22px; height:22px; opacity:0.55; }
-  .bot-link.active { color:var(--accent); }
-  .bot-link.active svg { opacity:1; }
-  .bot-link.active .bot-dot {
-    display:block; width:4px; height:4px; border-radius:50%;
-    background:var(--accent); margin-top:-2px;
-  }
-  .bot-dot { display:none; }
+  .bnav-item svg { transition:all 0.18s ease; }
+  .bnav-item.active { color:var(--accent); }
+  .bnav-item.active svg { filter:none; }
 
-  /* ── Page ── */
+  /* ══ PAGE ══ */
   .page {
     padding-top:calc(var(--nav-h) + 40px);
     padding-bottom:60px;
+    min-height:100dvh;
     display:flex; flex-direction:column; align-items:center;
-    padding-left:20px; padding-right:20px;
   }
-  .wrap { width:min(760px,100%); }
+  .wrap { width:min(760px,100%); padding:0 20px; }
 
-  /* ── Header ── */
-  .header { margin-bottom:36px; animation:fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
+  /* ══ HERO ══ */
+  .hero { margin-bottom:40px; animation:fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
   .badge {
     display:inline-flex; align-items:center; gap:8px;
     background:rgba(255,255,255,0.70); border:1px solid var(--border-2);
     border-radius:999px; padding:5px 14px 5px 9px;
     font-size:11px; font-weight:600; letter-spacing:0.09em;
-    text-transform:uppercase; color:var(--muted); margin-bottom:20px;
+    text-transform:uppercase; color:var(--muted); margin-bottom:18px;
   }
   .badge-dot {
-    width:7px; height:7px; border-radius:50%; background:var(--accent-2);
-    box-shadow:0 0 0 4px rgba(31,115,209,0.18);
+    width:7px; height:7px; border-radius:50%;
+    background:var(--accent-2); box-shadow:0 0 0 4px rgba(31,115,209,0.18);
     animation:pulse 2.2s ease-in-out infinite;
   }
   @keyframes pulse {
-    0%,100%{box-shadow:0 0 0 4px rgba(31,115,209,0.18);}
-    50%{box-shadow:0 0 0 8px rgba(31,115,209,0.07);}
+    0%,100% { box-shadow:0 0 0 4px rgba(31,115,209,0.18); }
+    50%      { box-shadow:0 0 0 8px rgba(31,115,209,0.07); }
   }
-  .header h1 {
+  .hero h1 {
     font-family:'Bricolage Grotesque',sans-serif;
-    font-size:clamp(2.1rem,6vw,3.4rem); font-weight:800;
+    font-size:clamp(2.2rem,6vw,3.6rem); font-weight:800;
     letter-spacing:-0.04em; line-height:1; margin-bottom:10px; color:var(--text);
   }
-  .header-sub { color:var(--muted); font-size:0.95rem; }
+  .hero-sub { color:var(--muted); font-size:0.95rem; }
 
-  /* ── Stats ── */
+  /* ══ STATS ══ */
   .stats-row {
-    display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
-    margin-bottom:32px; animation:fadeUp 0.5s 0.07s cubic-bezier(0.22,1,0.36,1) both;
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:10px; margin-bottom:36px;
+    animation:fadeUp 0.5s 0.07s cubic-bezier(0.22,1,0.36,1) both;
   }
   .stat-card {
-    background:var(--surface); border:1px solid var(--border); border-radius:16px;
-    padding:16px 18px; display:flex; flex-direction:column; gap:5px;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:16px; padding:16px 18px;
+    display:flex; flex-direction:column; gap:5px;
     backdrop-filter:blur(10px); transition:border-color 0.2s,transform 0.2s;
   }
   .stat-card:hover { border-color:var(--border-2); transform:translateY(-2px); }
   .stat-label { font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted-2); font-weight:600; }
   .stat-value { font-family:'Bricolage Grotesque',sans-serif; font-size:1.5rem; font-weight:700; letter-spacing:-0.03em; color:var(--text); }
 
-  /* ── Nav cards ── */
+  /* ══ SECTION LABEL ══ */
   .section-label {
     font-size:10.5px; text-transform:uppercase; letter-spacing:0.11em;
     color:var(--muted-2); font-weight:600; margin-bottom:14px;
@@ -147,163 +144,235 @@
   }
   .section-label::after { content:''; flex:1; height:1px; background:var(--border); }
 
+  /* ══ NAV CARDS ══ */
   .nav-cards {
-    display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
-    animation:fadeUp 0.5s 0.14s cubic-bezier(0.22,1,0.36,1) both;
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:14px; margin-bottom:36px;
+    animation:fadeUp 0.5s 0.12s cubic-bezier(0.22,1,0.36,1) both;
   }
   .nav-card {
-    background:var(--surface); border:1px solid var(--border); border-radius:20px;
-    padding:24px; text-decoration:none; color:var(--text);
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:20px; padding:22px 20px;
+    text-decoration:none; color:var(--text);
     display:flex; flex-direction:column; gap:14px;
     backdrop-filter:blur(12px);
-    transition:transform 0.18s,border-color 0.18s,box-shadow 0.18s;
+    transition:transform 0.18s ease,border-color 0.18s ease,box-shadow 0.18s ease;
     overflow:hidden; position:relative;
   }
   .nav-card::before {
     content:''; position:absolute; inset:0 auto 0 0;
     width:4px;
   }
-  .nav-card:hover { transform:translateY(-4px); border-color:var(--border-2); box-shadow:0 12px 32px rgba(11,78,162,0.10); }
+  .nav-card:hover {
+    transform:translateY(-4px); border-color:var(--border-2);
+    box-shadow:0 12px 32px rgba(11,78,162,0.10);
+  }
   .nav-card-icon {
     width:44px; height:44px; border-radius:14px;
     display:flex; align-items:center; justify-content:center;
     font-size:1.3rem;
   }
-  .nav-card-title { font-family:'Bricolage Grotesque',sans-serif; font-size:1.1rem; font-weight:800; letter-spacing:-0.03em; }
-  .nav-card-sub { font-size:0.82rem; color:var(--muted); font-weight:500; line-height:1.5; }
-  .nav-card-arrow { font-size:1.1rem; color:var(--muted-2); margin-top:auto; }
+  .nav-card-title {
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:1rem; font-weight:700; letter-spacing:-0.02em;
+    color:var(--text); line-height:1.2;
+  }
+  .nav-card-sub { font-size:0.78rem; color:var(--muted); margin-top:2px; }
+  .nav-card-arrow {
+    margin-top:auto; font-size:0.78rem; font-weight:600;
+    letter-spacing:0.04em; display:flex; align-items:center; gap:5px;
+  }
 
-  /* ── Footer ── */
+  /* ══ WEEK OVERVIEW ══ */
+  .week-grid {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    animation:fadeUp 0.5s 0.18s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  .day-card {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:16px; padding:16px 18px;
+    backdrop-filter:blur(10px);
+  }
+  .day-name {
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:0.88rem; font-weight:700; letter-spacing:-0.01em;
+    color:var(--text); margin-bottom:8px;
+  }
+  .day-classes { display:flex; flex-direction:column; gap:5px; }
+  .day-class-item {
+    display:flex; align-items:center; gap:7px;
+    font-size:0.75rem; color:var(--muted); font-weight:500;
+  }
+  .day-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+  .day-count {
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-size:1.3rem; font-weight:700; color:var(--text); margin-bottom:4px;
+  }
+  .day-count-label { font-size:0.72rem; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.08em; }
+
+  /* ══ FOOTER ══ */
   .footer {
     margin-top:40px; padding-top:22px; border-top:1px solid var(--border);
     display:flex; align-items:flex-end; justify-content:space-between;
     flex-wrap:wrap; gap:14px;
-    animation:fadeUp 0.5s 0.22s cubic-bezier(0.22,1,0.36,1) both;
+    animation:fadeUp 0.5s 0.24s cubic-bezier(0.22,1,0.36,1) both;
   }
   .footer-credit { text-align:right; display:flex; flex-direction:column; gap:2px; }
   .credit-name { font-family:'Bricolage Grotesque',sans-serif; font-size:0.82rem; font-weight:700; letter-spacing:-0.01em; color:var(--text); }
   .credit-meta { font-size:0.74rem; color:var(--muted-2); }
-  .footer-note { font-size:0.78rem; color:var(--muted-2); }
 
-  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(16px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
 
-  @media(max-width:640px) {
-    .topnav { display:none; }
-    .botnav { display:flex; }
-    .page { padding-top:32px; padding-bottom:calc(var(--bot-h) + 20px); padding-left:14px; padding-right:14px; }
+  /* ══ RESPONSIVE ══ */
+  @media (max-width:600px) {
+    .navbar { display:none; }
+    .bottom-nav { display:flex; }
+    .page { padding-top:36px; padding-bottom:calc(var(--bnav-h) + 24px); }
     .stats-row { grid-template-columns:repeat(2,1fr); }
     .nav-cards { grid-template-columns:1fr; }
+    .week-grid { grid-template-columns:1fr; }
     .footer { flex-direction:column; align-items:flex-start; }
     .footer-credit { text-align:left; }
   }
-  @media(max-width:360px) {
-    .stat-value { font-size:1.2rem; }
+  @media (max-width:380px) {
+    .wrap { padding:0 14px; }
+    .stats-row { gap:8px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Top Nav -->
-<nav class="topnav">
-  <a class="nav-brand" href="index.html">Batch <span>66E</span></a>
+<!-- Top Navbar -->
+<nav class="navbar">
+  <a class="nav-brand" href="index.html">
+    <div class="nav-logo">U U</div>
+    <span class="nav-title">Batch 66E</span>
+  </a>
   <div class="nav-links">
-    <a class="nav-link active" href="index.html">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 6.5L8 2l6 4.5V14H2V6.5z"/></svg>Home
+    <a href="index.html" class="nav-link active">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 6.5 8 2l6 4.5V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6.5z"/></svg>Home
     </a>
-    <a class="nav-link" href="online.html">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="M5 14h6M8 13v1"/></svg>Online
+    <a href="online.html" class="nav-link">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="3" width="14" height="9" rx="2"/><path d="M5 15h6M8 12v3"/></svg>Online
     </a>
-    <a class="nav-link" href="offline.html">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M6 2v12M2 6h12"/></svg>Offline
+    <a href="offline.html" class="nav-link">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 14V6l6-4 6 4v8"/><path d="M6 14v-4h4v4"/></svg>Offline
     </a>
-    <a class="nav-link" href="faculty.html">
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>Faculty
+    <a href="faculty.html" class="nav-link">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="5" r="3"/><path d="M1 14c0-2.8 2.2-5 5-5"/><circle cx="12" cy="8" r="2.5"/><path d="M9.5 14c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5"/></svg>Faculty
     </a>
   </div>
 </nav>
 
 <!-- Bottom Nav (mobile) -->
-<nav class="botnav">
-  <a class="bot-link active" href="index.html">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 6.5L8 2l6 4.5V14H2V6.5z"/></svg>
-    Home <span class="bot-dot"></span>
+<nav class="bottom-nav">
+  <a href="index.html" class="bnav-item active">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 6.5 8 2l6 4.5V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6.5z"/></svg>Home
   </a>
-  <a class="bot-link" href="online.html">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="M5 14h6M8 13v1"/></svg>
-    Online <span class="bot-dot"></span>
+  <a href="online.html" class="bnav-item">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="1" y="3" width="14" height="9" rx="2"/><path d="M5 15h6M8 12v3"/></svg>Online
   </a>
-  <a class="bot-link" href="offline.html">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M6 2v12M2 6h12"/></svg>
-    Offline <span class="bot-dot"></span>
+  <a href="offline.html" class="bnav-item">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 14V6l6-4 6 4v8"/><path d="M6 14v-4h4v4"/></svg>Offline
   </a>
-  <a class="bot-link" href="faculty.html">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
-    Faculty <span class="bot-dot"></span>
+  <a href="faculty.html" class="bnav-item">
+    <svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="5" r="3"/><path d="M1 14c0-2.8 2.2-5 5-5"/><circle cx="12" cy="8" r="2.5"/><path d="M9.5 14c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5"/></svg>Faculty
   </a>
 </nav>
 
 <div class="page">
   <div class="wrap">
 
-    <header class="header">
-      <div class="badge"><span class="badge-dot"></span> Uttara University · CSE</div>
+    <div class="hero">
+      <div class="badge"><span class="badge-dot"></span>Uttara University · CSE</div>
       <h1>Batch 66E<br>Dashboard</h1>
-      <p class="header-sub">Summer 2026 &nbsp;·&nbsp; CR Panel</p>
-    </header>
+      <p class="hero-sub">Summer 2026 &nbsp;·&nbsp; Class Schedule Portal</p>
+    </div>
 
     <div class="stats-row">
-      <div class="stat-card"><span class="stat-label">Total Classes</span><span class="stat-value">12</span></div>
-      <div class="stat-card"><span class="stat-label">Class Days</span><span class="stat-value">3</span></div>
+      <div class="stat-card"><span class="stat-label">Weekly Classes</span><span class="stat-value">12</span></div>
+      <div class="stat-card"><span class="stat-label">Online Days</span><span class="stat-value">2</span></div>
+      <div class="stat-card"><span class="stat-label">Offline Days</span><span class="stat-value">1</span></div>
       <div class="stat-card"><span class="stat-label">Faculty</span><span class="stat-value">5</span></div>
-      <div class="stat-card"><span class="stat-label">Semester</span><span class="stat-value">2nd</span></div>
     </div>
 
     <div class="section-label">Quick Access</div>
 
     <div class="nav-cards">
-      <a class="nav-card" href="online.html" style="--card-color:var(--c-blue)">
-        <div class="accent-left" style="position:absolute;inset:0 auto 0 0;width:4px;background:var(--c-blue)"></div>
-        <div class="nav-card-icon" style="background:var(--c-blue-bg)">💻</div>
+      <a href="online.html" class="nav-card" style="border-left-color:rgba(10,110,92,0.4)">
+        <div class="nav-card::before" style="background:#0a6e5c"></div>
+        <div class="nav-card-icon" style="background:rgba(10,110,92,0.08)">💻</div>
         <div>
           <div class="nav-card-title">Online Classes</div>
-          <div class="nav-card-sub">Tuesday &amp; Thursday<br>6 classes · Evening schedule</div>
+          <div class="nav-card-sub">Tuesday & Thursday · 6 classes</div>
         </div>
-        <div class="nav-card-arrow">→</div>
+        <div class="nav-card-arrow" style="color:#0a6e5c">View Schedule →</div>
       </a>
-
-      <a class="nav-card" href="offline.html">
-        <div style="position:absolute;inset:0 auto 0 0;width:4px;background:var(--c-teal)"></div>
-        <div class="nav-card-icon" style="background:var(--c-teal-bg)">🏫</div>
+      <a href="offline.html" class="nav-card">
+        <div class="nav-card-icon" style="background:rgba(11,78,162,0.08)">🏫</div>
         <div>
-          <div class="nav-card-title">Offline Classes</div>
-          <div class="nav-card-sub">Friday only<br>6 classes · 9 AM – 8 PM</div>
+          <div class="nav-card-title">Friday Offline</div>
+          <div class="nav-card-sub">Friday · 6 classes · 9 AM–8 PM</div>
         </div>
-        <div class="nav-card-arrow">→</div>
+        <div class="nav-card-arrow" style="color:var(--accent)">View Schedule →</div>
       </a>
-
-      <a class="nav-card" href="faculty.html">
-        <div style="position:absolute;inset:0 auto 0 0;width:4px;background:var(--c-purple)"></div>
-        <div class="nav-card-icon" style="background:var(--c-purple-bg)">👨‍🏫</div>
+      <a href="faculty.html" class="nav-card">
+        <div class="nav-card-icon" style="background:rgba(90,62,160,0.08)">👨‍🏫</div>
         <div>
           <div class="nav-card-title">Faculty Info</div>
-          <div class="nav-card-sub">5 faculty members<br>Contact, room &amp; email</div>
+          <div class="nav-card-sub">5 faculty · Contact & rooms</div>
         </div>
-        <div class="nav-card-arrow">→</div>
-      </a>
-
-      <a class="nav-card" href="#" style="opacity:0.6;cursor:default">
-        <div style="position:absolute;inset:0 auto 0 0;width:4px;background:var(--c-amber)"></div>
-        <div class="nav-card-icon" style="background:var(--c-amber-bg)">📢</div>
-        <div>
-          <div class="nav-card-title">Notice</div>
-          <div class="nav-card-sub">Send class notices<br>via Email &amp; WhatsApp</div>
-        </div>
-        <div class="nav-card-arrow" style="font-size:0.75rem;color:var(--muted-2)">Coming soon</div>
+        <div class="nav-card-arrow" style="color:#5a3ea0">View Faculty →</div>
       </a>
     </div>
 
+    <div class="section-label">Weekly Overview</div>
+
+    <div class="week-grid">
+      <div class="day-card">
+        <div class="day-name">Tuesday</div>
+        <div class="day-count">2</div>
+        <div class="day-count-label">Online Classes</div>
+        <div style="height:10px"></div>
+        <div class="day-classes">
+          <div class="day-class-item"><div class="day-dot" style="background:#0b4ea2"></div>EEE0714202 · ASE · 6–7 PM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#0b4ea2"></div>EEE0713201 · ASE · 7–8 PM</div>
+        </div>
+      </div>
+      <div class="day-card">
+        <div class="day-name">Thursday</div>
+        <div class="day-count">4</div>
+        <div class="day-count-label">Online Classes</div>
+        <div style="height:10px"></div>
+        <div class="day-classes">
+          <div class="day-class-item"><div class="day-dot" style="background:#0a6e5c"></div>MAT0541101 · MNR · 6–7 PM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#9a5c00"></div>GED0413201 · HA · 7–8 PM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#5a3ea0"></div>CSE0613203 · SAD · 8–9 PM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#9a5c00"></div>CSE0613204 · SAD · 9–10 PM</div>
+        </div>
+      </div>
+      <div class="day-card">
+        <div class="day-name">Friday</div>
+        <div class="day-count">6</div>
+        <div class="day-count-label">Offline Classes</div>
+        <div style="height:10px"></div>
+        <div class="day-classes">
+          <div class="day-class-item"><div class="day-dot" style="background:#9a5c00"></div>Electronics Lab · ASE · 9 AM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#0b4ea2"></div>Electronics · ASE · 10 AM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#5a3ea0"></div>Digital Logic Design · SAD · 11 AM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#9a5c00"></div>DLD Lab · SAD · 4 PM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#0a6e5c"></div>Calculus · MNR · 6 PM</div>
+          <div class="day-class-item"><div class="day-dot" style="background:#b03020"></div>Entrepreneurship · RM · 7 PM</div>
+        </div>
+      </div>
+    </div>
+
     <footer class="footer">
-      <p class="footer-note">Uttara University · Summer 2026</p>
+      <div style="font-size:0.78rem;color:var(--muted-2)">Summer 2026 · Uttara University</div>
       <div class="footer-credit">
         <div class="credit-name">Sabbir Hussan Khan</div>
         <div class="credit-meta">ID: 2261091211 &nbsp;·&nbsp; Batch 66E</div>
